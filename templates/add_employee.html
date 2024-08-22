@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Employee</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url("{% static 'images/add_emp.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* height: 100vh; */
+            margin: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        input[type=text], input[type=password], input[type=email], input[type=date], select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 14px 20px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Add Employee</h2>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="profile_picture">Profile Picture</label>
+                        {{ form.profile_picture }}
+                        <div class="error">{{ form.profile_picture.errors }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="name">Name</label>
+                        {{ form.name }}
+                        <div class="error">{{ form.name.errors }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="emp_code">Emp Code</label>
+                        {{ form.emp_code }}
+                        <div class="error">{{ form.emp_code.errors }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="DOB">Date of Birth</label>
+                        {{ form.DOB }}
+                        <div class="error">{{ form.DOB.errors }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="gender">Gender</label>
+                        {{ form.gender }}
+                        <div class="error">{{ form.gender.errors }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="date_of_join">Date of Join</label>
+                        {{ form.date_of_join }}
+                        <div class="error">{{ form.date_of_join.errors }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="permenant_address">Permenant Address</label>
+                        {{ form.permenant_address }}
+                        <div class="error">{{ form.permenant_address.errors }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="current_address">Current Address</label>
+                        {{ form.current_address }}
+                        <div class="error">{{ form.current_address.errors }}</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mb-3">
+                        <label for="phone_number">Phone Number</label> <br>
+                        {{ form.phone_number }}
+                        <div class="error">{{ form.phone_number.errors }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="emergency_contact_name">Emergency Contact Name</label>
+                        {{ form.emergency_contact_name }}
+                        <div class="error">{{ form.emergency_contact_name.errors }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="emergency_contact_relationship">Emergency Contact Relationship</label>
+                        {{ form.emergency_contact_relationship }}
+                        <div class="error">{{ form.emergency_contact_relationship.errors }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="emergency_contact_number">Emergency Contact Number</label> <br>
+                        {{ form.emergency_contact_number }}
+                        <div class="error">{{ form.emergency_contact_number.errors }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="mail_id">Mail ID</label>
+                        {{ form.mail_id }}
+                        <div class="error">{{ form.mail_id.errors }}</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="personal_mail_id">Personal Mail ID</label>
+                        {{ form.personal_mail_id }}
+                        <div class="error">{{ form.personal_mail_id.errors }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="aadhar_no">Aadhar Number</label> <br>
+                        {{ form.aadhar_no }}
+                        <div class="error">{{ form.aadhar_no.errors }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="pan_number">PAN Number</label>
+                        {{ form.pan_number }}
+                        <div class="error">{{ form.pan_number.errors }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="department">Department</label>
+                        {{ form.department }}
+                        <div class="error">{{ form.department.errors }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="bank_name">Bank Name</label>
+                        {{ form.bank_name }}
+                        <div class="error">{{ form.bank_name.errors }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="bank_acc_number">Account Number</label> <br>
+                        {{ form.bank_acc_number }}
+                        <div class="error">{{ form.bank_acc_number.errors }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ifsc_code">IFSC CODE</label>
+                        {{ form.ifsc_code }}
+                        <div class="error">{{ form.ifsc_code.errors }}</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="salary">CTC</label> <br>
+                        {{ form.salary }}
+                        <div class="error">{{ form.salary.errors }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit">Add Employee</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+{% load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Status</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("{% static 'images/reject.jpg' %}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-top: 100px;
+            /* opacity: 0.8; */
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .leave-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .leave-table th,
+        .leave-table td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .leave-table th {
+            background-color: #f4f4f4;
+        }
+
+        .leave-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .leave-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .status {
+            padding: 5px 10px;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 0.9em;
+        }
+
+        .status.pending {
+            background-color: #f0ad4e;
+        }
+
+        .status.approved {
+            background-color: #5cb85c;
+        }
+
+        .status.rejected {
+            background-color: #d9534f;
+        }
+
+        .details-link {
+            color: #0275d8;
+            text-decoration: none;
+        }
+
+        .details-link:hover {
+            text-decoration: underline;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            background-color: #333;
+            padding: 10px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .navbar .navbar-left a {
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .navbar .navbar-right {
+            display: flex;
+            gap: 10px;
+        }
+
+        .navbar .nav-button {
+            padding: 10px 20px;
+            background-color: #555;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar .nav-button:hover {
+            background-color: #777;
+        }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-left">
+            <a href="{% url 'dashboard' %}" class="brand">Prime Minds Consulting Pvt Ltd.</a>
+        </div>
+        <div class="navbar-right">
+            <a href="{% url 'employee_details' %}" class="nav-button">Employee</a>
+            <a href="{% url 'addDepartment' %}" class="nav-button">Department</a>
+            <a href="{% url 'allAttendanceView' %}" class="nav-button">Attendance</a>
+            <a href="{% url 'generate_payslip' %}" class="nav-button">Payroll</a>
+            <a href="{% url 'viewLeaveRequest' %}" class="nav-button">Leaves</a>
+            <a href="{% url 'contacts' %}" class="nav-button">Contacts</a>
+            <a href="{% url 'pay' %}" class="nav-button">Self Service</a>
+            <a href="{% url 'AdminLogOut' %}" class="nav-button">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Rejected List</h2>
+        <table class="leave-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Day(s)</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in res %}
+                {% if i.status == 'Rejected' %}
+                <tr>
+                    <td>{{ i.user|title }}</td>
+                    <td>{{ i.leavetype }}</td>
+                    <td>{{ i.enddate|date:"Y-m-d" }} - {{ i.startdate|date:"Y-m-d" }}</td>
+                    <td><span class="{% if i.status == 'Approved' %}status approved {% elif i.status == 'Pending' %}status pending{% elif i.status == 'Rejected' %}status rejected{% endif %}">{{ i.status }}</span></td>
+                </tr>
+                {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
